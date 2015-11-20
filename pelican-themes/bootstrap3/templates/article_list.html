@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if articles %}
+        <article>
+			{% block articles_title %}{% endblock %}
+			{% for article in (articles_page.object_list if articles_page else articles) %}
+			<div class="row index_article">
+				<div class="col-sm-4">
+					{% if DISPLAY_ARTICLE_INFO_ON_INDEX %}
+						{% include "includes/naidom_article_info.html" %}
+					{% endif %}
+				</div>
+				<div class="col-sm-8">
+					<h4><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}
+						{% if article.series %}<i>. Серия "{{ article.series.name }}"</i>{% endif %}</a></h4>
+					<div class="summary">{{ article.summary }}
+						{% include 'includes/comment_count.html' %}
+						
+						<span class="published">
+							<div datetime="{{ article.date.isoformat() }}"> 
+							{% if article.title_img %}
+								<i>{{ article.date.strftime('%d %b, %Y') }}</i> {% endif %}
+							{% if article.series %}
+								{% if article.title_img %}
+									<i>, cерия "{{ article.series.name }}"</i>
+								{% else %}
+									<i>Серия "{{ article.series.name }}"</i>
+								{% endif %}
+							{% endif %}
+							<a class="btn btn-default btn-sm pull-right" href="{{ SITEURL }}/{{ article.url }}">читать ...</a>
+							</div>
+						</span>
+					</div>
+				</div>
+			</div>
+        {% endfor %}
+		</article>
+    {% endif %}
+
+    {% include 'includes/pagination.html' %}
+{% endblock content %}
+
+{% block tag_nav %}
+    {% if tags %}
+	<li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Темы <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+
+		{% for tg, null in tags %}
+            <li {% if tg == tag %}class="active"{% endif %}>
+				<a href="{{ SITEURL }}/{{ tg.url }}">{{ tg | capitalize }}</a></li>
+        {% endfor %}    
+        </ul>
+	</li>
+	{% endif %}
+{% endblock tag_nav %}

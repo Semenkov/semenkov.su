@@ -1,0 +1,69 @@
+{# SemenS - gallery #}
+{% if article.gallery and article.gallery.service and albums and article.gallery.user and article.gallery.album %}
+	{% if article.gallery['service']=='YA' %} {# Yandex #}
+		
+		{#  SemenS BOOTSTRAP version #}
+		<dl class="dl-horizontal">
+		  <dt>Для просмотра:</dt>
+		  <dd><a href="https://fotki.yandex.ru/next/users/{{ article.gallery.user}}/album/{{article.gallery.album}}/fullscreen/{{albums['YA'][article.gallery.user][article.gallery.album|string]['first_photo'] }}?page=0" target="_blank">
+			фотографии в максимальном качестве, <b>откроются на полный экран</b><span class="glyphicon glyphicon-new-window"></span></a></dd>
+		  <dt>Для скачивания:</dt>
+		  <dd><a href="https://fotki.yandex.ru/users/{{ article.gallery.user}}/album/{{article.gallery.album}}/" target="_blank">
+			ссылка на этот альбом в Фотки.Яндекс <span class="glyphicon glyphicon-new-window"></span></a>
+		  </dd>
+		</dl> 		
+		<div class="row">
+		{% for p in albums['YA'][article.gallery.user][article.gallery.album|string]['photos'].values()|sort(attribute='order')%}
+				 <div class="col-xs-6 col-md-4">
+					<div class="thumbnail">
+						<a data-lightbox="image_set" data-title="{{ p['summary']|striptags }}" href="{{ p['url'] }}XXXL"> 
+							<img class="img-rounded"
+								alt="{{ p['summary']|striptags }}" 
+								data-toggle="tooltip" 
+								src="{{ p['url'] }}S" 
+								title="{{ p['summary']|striptags }}" 
+								sizes="50vw"
+							srcset="{{ p['url'] }}S 150w, {{ p['url'] }}M 300w, {{ p['url'] }}L 500w"
+							/>
+						</a>
+						<div class="caption visible-lg-block visible-md-block visible-sm-block">
+							<p class="sem-small sem-center">{{ p['summary']|striptags }}</p>
+						</div>
+					</div>
+				 </div>
+		 {% endfor %}
+			</div>
+
+		 {#  SemenS Skeleton version 
+		<!-- div class="row">
+		{% for p in albums['YA'][article.gallery.user][article.gallery.album|string]['photos'].values()|sort(attribute='order')%}
+				 <div class="four columns">
+					 <a data-lightbox="image_set" data-title="{{ p['summary']|striptags }}" href="{{ p['url'] }}XXXL"> 
+					 
+					<picture>
+						<source srcset="{{ p['url'] }}M" media="(min-width: 900px)"/>
+						<source srcset="{{ p['url'] }}S" media="(min-width: 450px)"/>
+						<source srcset="{{ p['url'] }}XS"/>
+						<img alt="{{ p['summary']|striptags }}" class="u-max-full-width" data-toggle="tooltip" src="{{ p['url'] }}S" title="{{ p['summary']|striptags }}" />
+					</picture>	
+
+					 </a> 
+					<p class="sem-small sem-center">{{ p['summary']|striptags }}</p>
+					
+				 </div>
+			{% if (loop.index0+1) is divisibleby(3)  %}
+				</div><div class="row">
+			{% endif %}
+		 {% endfor %}
+		 </div-->
+		 #}
+		 
+		 
+	{% endif %}
+	
+	
+	
+	
+	
+	
+{% endif %}

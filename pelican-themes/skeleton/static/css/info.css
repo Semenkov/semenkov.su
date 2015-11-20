@@ -1,0 +1,30 @@
+.info {
+    color: #BBB;
+}
+
+.info a {
+    color: inherit;
+}
+
+span.tags{
+    text-align: right;
+    float: right
+}
+
+.info a.tag {
+    background: #CCC;
+    color: #FFF;
+    display: inline-block;
+    padding: 0 .3em;
+    border: 1px transparent solid;
+    border-radius: 5px;
+}
+
+.info a.tag:hover {
+    background: inherit;
+    color: inherit;
+}
+
+.info a.tag.selected {
+    border: 1px #999 solid;
+}

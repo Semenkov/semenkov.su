@@ -1,0 +1,24 @@
+nav {
+    list-style: none;
+    float: right;
+}
+
+nav li {
+    float: left;
+}
+
+nav a {
+    display: block;
+    padding: 4.5em 10px 10px 10px;
+}
+
+nav a:hover {
+    background-color: #d3d3d3;
+    color: #FFF;
+}
+
+nav li.selected a {
+    background-color: #15A9DB;
+    color: #FFF;
+}
+

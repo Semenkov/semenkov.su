@@ -1,0 +1,53 @@
+        <div class="row">
+			<div id="menu">
+				<div class="left"><a href="http://nafiulis.me/feeds/all.atom.xml"><i class="fa fa-rss
+					icon"></i></a></div>
+				
+				<div class="center"><h1 class="message">Миг между прошлым и будущим</h1></div>
+				
+				<div class="right"></div>
+			</div>
+
+			<article class="post twelve columns">
+				
+				
+                <div class="info">
+                    <a href="{{ SITEURL }}/{{ article.url }}">{{ article.date.strftime("%d %b, %Y") }}</a>
+
+					
+                    {#
+					%- if article.category.name != "misc" -%}
+                    &nbsp;&middot;&nbsp;<a href="{{ SITEURL }}/{{ article.category.url }}" rel="tag">{{ article.category }}</a>
+                    {%- endif -%
+					#}
+                    {%- if article.tags -%}
+                    <span class="tags">
+                    {%- for t in article.tags -%}
+                    &nbsp;<a href="{{ SITEURL }}/{{ t.url }}" class="tag{%- if tag and tag.name == t.name %} selected{% endif -%}">{{ t }}</a>
+                    {%- endfor %}
+                    </span>
+                    {%- endif %}
+                </div>
+
+
+                {% if article.title -%}
+					<h1 id = "subtitle" class="title">{{ article.title }}
+					{%- if article.parent and articles and articles|length > 0 -%}
+						{% for a in articles %}
+							{% if a.slug|string() == article.parent.slug|string() %}
+								( <a href="{{ SITEURL }}/{{ a.url }}">{{ a.title|striptags }}</a> )
+							{% endif %}
+						{% endfor %}
+                    {%- endif %}					
+					</h1>
+                {% endif %}
+
+				
+                {{ article.content }}
+				
+
+            </article>
+
+		</div><!-- row -->
+			{% include "gallery.html" %}
+			{% include "article_parts.html" %}

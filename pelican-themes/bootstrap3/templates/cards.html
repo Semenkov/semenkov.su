@@ -1,0 +1,21 @@
+{% extends "card_list.html" %}
+
+{% block canonical_rel %}<link rel="canonical" href="{{ SITEURL }}">{% endblock %}
+
+{% block banner %}
+	{% include 'includes/banner.html' %}
+{% endblock %}
+
+
+{% block scripts %}
+<script type="text/javascript">
+	$(function() {
+		$( "a.tag-switch" ).click(function() {
+			t = $( this ).attr('tag');
+			console.log( t );
+			$("div[tags]").addClass( "hidden" );
+			$("div[tags~='"+t+"']").removeClass( "hidden" );
+		});
+	})
+</script>
+{% endblock %}

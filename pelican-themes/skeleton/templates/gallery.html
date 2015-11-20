@@ -1,0 +1,49 @@
+{# SemenS - gallery #}
+{% if article.gallery and article.gallery.service and albums and article.gallery.user and article.gallery.album%}
+	{% if article.gallery.service=='YA' %} {# Yandex #}
+		{# 
+		<!--div class="row">
+		{% for p in albums['YA'][article.gallery.user][article.gallery.album|string]['photos'].values()|sort(attribute='order')%}
+				 <div class="four columns">
+					 <a data-lightbox="image_set" data-title="{{ p['summary']|striptags }}" href="{{ p['url'] }}_XXL"> 
+						<img alt="{{ p['summary']|striptags }}" class="u-max-full-width" data-toggle="tooltip" src="{{ p['url'] }}_L" title="{{ p['summary']|striptags }}" />
+					</a> 
+					<p class="sem-small sem-center">{{ p['summary']|striptags }}</p>
+					
+				 </div>
+			{% if (loop.index0+1) is divisibleby(3)  %}
+				</div><div class="row">
+			{% endif %}
+		 {% endfor %}
+		 </div-->
+		#} 
+		<div class="row">
+		{% for p in albums['YA'][article.gallery.user][article.gallery.album|string]['photos'].values()|sort(attribute='order')%}
+				 <div class="four columns">
+					 <a data-lightbox="image_set" data-title="{{ p['summary']|striptags }}" href="{{ p['url'] }}XXXL"> 
+					 
+					<picture>
+						<source srcset="{{ p['url'] }}M" media="(min-width: 900px)"/>
+						<source srcset="{{ p['url'] }}S" media="(min-width: 450px)"/>
+						<source srcset="{{ p['url'] }}XS"/>
+						<img alt="{{ p['summary']|striptags }}" class="u-max-full-width" data-toggle="tooltip" src="{{ p['url'] }}S" title="{{ p['summary']|striptags }}" />
+					</picture>	
+
+					 </a> 
+					<p class="sem-small sem-center">{{ p['summary']|striptags }}</p>
+					
+				 </div>
+			{% if (loop.index0+1) is divisibleby(3)  %}
+				</div><div class="row">
+			{% endif %}
+		 {% endfor %}
+		 </div>
+		 
+	{% endif %}
+	
+	
+	
+	
+	
+	
+{% endif %}

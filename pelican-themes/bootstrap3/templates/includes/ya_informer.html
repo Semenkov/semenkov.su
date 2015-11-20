@@ -1,0 +1,7 @@
+{% if YANDEX_ANALYTICS %}
+	<!-- Yandex.Metrika informer -->
+	<a href="https://metrika.yandex.ru/stat/?id={{ YANDEX_ANALYTICS }}&amp;from=informer"
+	target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/{{ YANDEX_ANALYTICS }}/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+	style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" onclick="try{Ya.Metrika.informer({i:this,id:{{ YANDEX_ANALYTICS }},lang:'ru'});return false}catch(e){}" /></a>
+	<!-- /Yandex.Metrika informer -->
+{% endif %}

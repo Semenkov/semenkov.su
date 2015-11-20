@@ -1,0 +1,207 @@
+/* Mockingbird Theme by Nevan Scott nevanscott.com */
+/* Modified by Jody Frankowski */
+/* Modified some more by Matthew Power */
+/* @import url(http://fonts.googleapis.com/css?family=Crimson+Text|Raleway:400,300,600); */
+@import 'nav.css';
+@import 'info.css';
+
+/* Narrow the container to get the style I'm looking for. 
+.container{
+    max-width: 40em;
+}
+*/
+a {
+    text-decoration: none;
+    color: #15A9DB; 
+	
+}
+
+html {
+  font-size: 62.5%; }
+  
+div.row div#menu {
+    max-width: 68em;
+    margin-left: auto;
+    margin-right: auto;
+    background: #878484;
+    height: 40px;
+    width: 960px;
+    display: block;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}  
+
+div.row div#menu div.center h1.message {
+    color: white;
+    font-family: Cambria, "Times New Roman", Times, serif;
+    font-size: 20px;
+}
+  
+
+body {
+    /* font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; */
+	font-family: "Georgia", "Bookman Old Style", "Book Antiqua", "Times New Roman", Times, serif;
+    line-height: 1.5;
+	background: #E9E0D6;
+	-webkit-font-smoothing: antialiased; color: #333;  font-size: 1em; 
+}
+
+.container { 
+	background-color: white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: Arial, serif;
+  }
+
+/* Override Title & Subtitle size for to fit in the layout. */
+#title {
+    font-size: 3em;
+    margin-top: 0.5em;
+    margin-bottom: 0em;
+}
+
+#subtitle {
+    font-size: 2em;
+}
+
+article {
+    margin-bottom: 2em;
+	margin: 0 10px;
+	
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 20px;
+	
+}
+
+
+/* Shrink code blocks to squeeze 80 chars per line. */
+article pre {
+    font-size: 0.75em;
+    line-height: 1.3;
+}
+
+code {
+    font-size: 80%
+}
+
+div.highlight{
+    border: 1px solid #E1E1E1;
+    border-radius: 6px;
+    padding-left: 10px;
+    margin-bottom: 2.5rem;
+}
+
+.date {
+    color: #CCC;
+}
+
+footer {
+    text-align: center;
+    color: #BBB;
+    margin: 3em 0;
+    border: 1px solid #EEE;
+    border-radius: 5px;
+}
+
+footer p {
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+}
+
+/* Image prettify */
+img {
+    box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.25);
+    border-radius: 0.3em;
+    max-width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
+
+img.L {
+	margin-right: 1rem;
+}
+ 
+img.R {
+	margin-left: 0.5rem;
+}
+
+
+ 
+ /* Media Queries
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+/*
+Note: The best way to structure the use of media queries is to create the queries
+near the relevant code. For example, if you wanted to change the styles for buttons
+on small devices, paste the mobile query code up in the buttons section and style it
+there.
+*/
+
+
+/* Larger than mobile */
+@media (min-width: 400px) {
+html {font-size: 75%; }
+}
+
+/* Larger than phablet (also point when grid becomes active) */
+@media (min-width: 550px) {
+html {font-size: 81.25%; }
+}
+
+/* Larger than tablet */
+@media (min-width: 750px) {
+html {font-size: 87.5%; }
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {}
+
+/* Larger than Desktop HD */
+@media (min-width: 1200px) {}
+
+
+ /* Описание поста в списке
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+article.shortpost {
+  margin-top: 3rem;
+  margin-bottom: 3.5rem;
+  max-width: 800px; /* SemenS */
+}
+
+article.shortpost  h5.title{
+ margin-bottom: 5px;
+}
+
+article.shortpost  img{
+ margin-bottom: 2rem;
+}
+
+ /* SemenS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.sem-center {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  float: left;
+}
+
+.sem-center h5 {
+	margin-bottom: 0;
+}
+
+.sem-small {
+  font-size: 0.75em;
+  margin-bottom: 0rem;
+}
+
+article blockquote p{
+	padding-left: 2.25em;
+	color: #666;
+	background:url('http://pcdn.paravel.netdna-cdn.com/wp-content/uploads/2014/03/bq-bg.png') repeat-y;
+}

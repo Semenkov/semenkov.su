@@ -1,0 +1,93 @@
+{# SemenS - child #}
+{% if article.parent and articles and articles|length > 0 %}
+	<div class="row">
+	<article class="post twelve columns">
+		{% set ch = [] %}
+		{% set my_par_t = article %}
+		{% for a in articles %}
+			{% if a.slug|string() == article.parent.slug|string() %}
+				<hr class="u-cf"/>
+				<table class="sem-center">
+				<thead>
+				<tr>
+				<th>Статья входит в серию</th>
+				<th></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				<td><h4><a  href="{{ SITEURL }}/{{ a.url }}">{{ a.title|striptags }}</a></h4></td>
+				<td></td>
+				</tr>
+				</tbody>
+				</table>
+			{% endif %}
+		{% endfor %}
+
+		{% for chld in articles if chld.parent and chld.parent.slug == article.parent.slug %}
+			{% set a=ch.append(chld) %}
+		{% endfor %}
+		
+	<table class="sem-center">
+	<thead>
+	<tr>
+	<th>&larr;&nbsp; Предыдущие части</th>
+	<th>Следующие части &nbsp;&rarr;</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<td >
+				{% for c in ch| sort(attribute='parent.order') %}
+					{% if c.parent.order|int() < article.parent.order|int() %}
+						<a href="{{ SITEURL }}/{{ c.url }}">{{ c.title|striptags }}</a><br/>
+					{% endif %}					
+				{% endfor %}
+	</td>
+	<td>
+				{% for c in ch| sort(attribute='parent.order') %}
+					{% if c.parent.order|int() > article.parent.order|int() %}
+						<a href="{{ SITEURL }}/{{ c.url }}">{{ c.title|striptags }}</a><br/>
+					{% endif %}					
+				{% endfor %}
+	</td>
+	</tr>
+	</tbody>
+	</table>			
+	</article></div>
+{% endif %}
+
+{# --  Children -- #}
+{% if article.children and articles and articles|length > 0 %}
+	<div class="row">
+	<article class="post twelve columns">
+		{% set ch = [] %}
+		{% set my_par_t = article %}
+
+		{% for chld in articles if chld.parent and chld.parent.slug|string() == article.slug|string() %}
+			{% set a=ch.append(chld) %}
+		{% endfor %}
+		
+				<table class="sem-center">
+				<thead>
+				<tr>
+				<th>Следующие части этой статьи:</th>
+				<th></th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+				<td><h5>
+				{% for c in ch| sort(attribute='parent.order') %}
+					<a href="{{ SITEURL }}/{{ c.url }}">{{ c.title|striptags }}</a>
+					{% if not loop.last %}
+						<br/>
+					{% endif %}
+				{% endfor %}
+				</h5></td>
+				<td></td>
+				</tr>
+				</tbody>
+				</table>
+	</article></div>
+{% endif %}

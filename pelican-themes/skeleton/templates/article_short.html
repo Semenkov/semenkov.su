@@ -1,0 +1,64 @@
+            <article class="shortpost twelve columns">
+                {% if article.title -%}
+                <h5 class="title">
+                    <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permanent Link to &quot;{{ article.title }}&quot;">{{ article.title }}</a>
+					{%- if article.parent and articles and articles|length > 0 -%}
+						{% for a in articles %}
+							{% if a.slug|string() == article.parent.slug|string() %}
+								( {{ a.title|striptags }} )
+							{% endif %}
+						{% endfor %}
+                    {%- endif %}					
+                </h5>
+                {% endif %}
+				
+				{% if article.thumbnail and  article.thumbnail.img_url-%}
+                    <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permanent Link to &quot;{{ article.title }}&quot;">
+						<picture>
+							<source srcset="{{ article.thumbnail.img_url }}XL" media="(min-width: 900px)"/>
+							<source srcset="{{ article.thumbnail.img_url }}L" media="(min-width: 550px)"/>
+							<source srcset="{{ article.thumbnail.img_url }}M" media="(min-width: 350px)"/>
+							<source srcset="{{ article.thumbnail.img_url }}S"/>
+							
+							<img class="u-max-full-width" src="{{ article.thumbnail.img_url }}L" />
+							
+						</picture>	
+					</a>
+					
+                {% endif %}
+
+				{% if article.thumbnail and  article.thumbnail.service and article.thumbnail.service|string() == 'YA' -%}
+					<a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permanent Link to &quot;{{ article.title }}&quot;">
+						<picture>
+							<source srcset="{{ PHOTO_ALBUMS['YA'][article.thumbnail.user|string()][article.thumbnail.album|string()]['photos'][article.thumbnail.photo|string()]['url'] }}XL" media="(min-width: 900px)"/>
+							<source srcset="{{ PHOTO_ALBUMS['YA'][article.thumbnail.user|string()][article.thumbnail.album|string()]['photos'][article.thumbnail.photo|string()]['url'] }}L" media="(min-width: 550px)"/>
+							<source srcset="{{ PHOTO_ALBUMS['YA'][article.thumbnail.user|string()][article.thumbnail.album|string()]['photos'][article.thumbnail.photo|string()]['url'] }}M" media="(min-width: 350px)"/>
+							<source srcset="{{ PHOTO_ALBUMS['YA'][article.thumbnail.user|string()][article.thumbnail.album|string()]['photos'][article.thumbnail.photo|string()]['url'] }}S"/>
+							
+							<img class="u-max-full-width" src="{{ PHOTO_ALBUMS['YA'][article.thumbnail.user|string()][article.thumbnail.album|string()]['photos'][article.thumbnail.photo|string()]['url'] }}L" />
+							
+						</picture>	
+					
+
+					</a>
+					
+					
+                {% endif %}
+				
+                {{ article.summary }}
+
+                <div class="info">
+                    <p>{{ article.date.strftime("%d %B %Y") }}
+                    {# remove category %- if article.category.name != "misc" -%}
+                    &nbsp;&middot;&nbsp;<a href="{{ SITEURL }}/{{ article.category.url }}" rel="tag">{{ article.category }}</a>
+                    {%- endif -% #}
+                    {%- if article.tags -%}
+                    <span class="tags">
+                    {%- for t in article.tags -%}
+                    &nbsp;<a href="{{ SITEURL }}/{{ t.url }}" class="tag{%- if tag and tag.name == t.name %} selected{% endif -%}">{{ t }}</a>
+                    {%- endfor %}
+                    </span>
+                    {%- endif %}
+					</p>
+                </div>
+            </article>

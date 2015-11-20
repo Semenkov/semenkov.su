@@ -1,0 +1,7 @@
+
+D:\Sem\Dropbox\semenkov.su>REM cd C:\Users\Sem\Dropbox\semenkov.su 
+
+D:\Sem\Dropbox\semenkov.su>REM pelican --ignore-cache -v -D -s pelican_local_conf.py 
+
+D:\Sem\Dropbox\semenkov.su>pelican --ignore-cache -D -s pelican_local_conf.py 
+Done: Processed 1 article, 1 draft, 0 pages and 0 hidden pages in 2.00 seconds.

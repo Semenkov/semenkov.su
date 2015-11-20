@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if articles %}
+			{% block articles_title %}{% endblock %}
+			{% for article in (articles_page.object_list if articles_page else articles) %}
+			<div class="col-xs-6 col-sm-4 col-lg-3"
+				{% if article.tags %}
+					tags="{% for tag in article.tags %}{{ tag }} {% endfor %}"
+				{% endif %}
+			>
+				<div class="thumbnail">
+					{% if article.title_img %}
+						<a href="{{ SITEURL }}/{{ article.url }}">
+							<img class="img-rounded" src="http://{{ article.title_img }}" />
+						</a>
+						<div class="caption">
+							<h4><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h4>
+							<p>{{ article.date.strftime('%d %b, %Y') }}
+							<!--a href="#" class="btn btn-info btn-xs pull-right" >Читать...</a-->
+							</p>
+						</div>
+					{% else %}
+				
+					<div class="caption">
+						<h4><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h4>
+						<a href="{{ SITEURL }}/{{ article.url }}">{{ article.summary }}</a>
+						<p>{{ article.date.strftime('%d %b, %Y') }}
+							<!--a href="#" class="btn btn-info btn-xs pull-right" >Читать...</a-->
+							</p>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+        {% endfor %}
+    {% endif %}
+	<div class="col-xs-12">
+    {% include 'includes/pagination.html' %}
+	</div>
+{% endblock content %}
+
+{% block tag_nav %}
+    {% if tags %}
+	<li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Темы <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+
+		{% for tg, null in tags %}
+            <li {% if tg == tag %}class="active"{% endif %}>
+				<a href="#" tag="{{ tg }}" class ="tag-switch">{{ tg | capitalize }}</a></li>
+        {% endfor %}    
+        </ul>
+	</li>
+	{% endif %}
+{% endblock tag_nav %}
